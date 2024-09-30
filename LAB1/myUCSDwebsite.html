@@ -12,7 +12,10 @@ ul{
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: white;
+	background-color: #182b49;
+	position: fixed;
+	top: 0;
+	max-width: 400px;
 }
 
 li {
@@ -25,6 +28,9 @@ li a {
 	padding: 14px 16px;
 	text-decoration:none;
 }
+
+li a:hover:not(.active){
+	background-color: white;
 
 .active {
 	background-image: url(https://www.ucsd.edu/_resources/img/bg-orbs-1.jpg);
