@@ -1,17 +1,62 @@
 <!DOCTYPE html>
 <html>
+	<!--<link rel="stylesheet" href="style.css">-->
 <body>
+<style>
+div{
+	width: 100%;
+	display:inline-block;
+}
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: white;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration:none;
+}
+
+.active {
+	background-image: url(https://www.ucsd.edu/_resources/img/bg-orbs-1.jpg);
+	color:white;
+}
+</style>
+
+<img src="https://www.ucsd.edu/_resources/img/logo_UCSD.png" alt="UCSD logo"> 
+<ul>
+	<li><a href="#S1">Section 1</a></li> 
+	<li><a href="#S2">Section 2</a></li>
+	<li><a href="#S3">Section 3</a></li>
+</ul>
+
+	<div style="background-color:rgb(245, 240, 230);">
+		<h2 id="S1">Section 1</h2>
+
+		<img src="https://brand.ucsd.edu/_images/logos-and-brand-elements/additional-campus-logos/ucsd-athletics-logo.svg">
+		<p>random words to fill up this space</p>
+	</div>
+
+	<div style="background-image:url(https://www.ucsd.edu/_resources/img/bg-orbs-1.jpg);color:white;">
+		<h2 style="color:white;" id="S2">Section 2</h2>
+
+		<img src="https://brand.ucsd.edu/_images/logos/logos-college-logos-07-23.svg">
+		<p>random words to fill up this space</p>
+	</div>
+
+	<div>
+		<h2 id="S3">Section 3</h2>
 
 
-<img src="https://www.ucsd.edu/_resources/img/logo_UCSD.png" alt="UCSD logo"> <a href=#S1">Section 1</a> <a href="#S2">Section 2</a>
-
-
-<h2 id="S1">Section 1</h2>
-
-<img src="https://brand.ucsd.edu/_images/logos-and-brand-elements/additional-campus-logos/ucsd-athletics-logo.svg">
-
-	
-<h2 id="S2">Section 2</h2>
-
-<img src="https://brand.ucsd.edu/_images/logos/logos-college-logos-07-23.svg">
-
+	</div>
+</body>
+</html>
