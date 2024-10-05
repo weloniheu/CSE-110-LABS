@@ -42,14 +42,14 @@ div {
 
 #s1, #s3 {
 	background-color: rgb(245, 240, 230);
-	scroll-margin-top: 120px;
+	scroll-margin-top: 170px;
 	padding: 15px;
 }
 
 #s2 {
 	background-image: url('https://www.ucsd.edu/_resources/img/bg-orbs-1.jpg');
 	color: white;
-	scroll-margin-top: 120px;
+	scroll-margin-top: 170px;
 	padding: 15px;
 }
 
