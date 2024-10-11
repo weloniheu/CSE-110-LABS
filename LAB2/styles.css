@@ -21,3 +21,10 @@ button {
 .result {
     margin-top: 20px;
 }
+
+.note-form {
+    display: "flex";
+    border: 1px solid black;
+    flex-direction: column;
+}
+

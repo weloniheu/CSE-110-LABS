@@ -1,10 +1,134 @@
+
+
 .note-individual {
-  border: 1px solid black;
+  border: 1px solid var(--border) ;
   display: "flex";
   flex-direction: column;
  }
+
  
  .app-container {
-  display: "flex";
+  display: grid;
+  grid-template-columns: 1fr 4fr;
   flex-direction: column;
+  gap: 20px;
  }
+
+ .note-form {
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  border-radius: 5px;
+ }
+
+ body {
+  margin: 20px;
+ }
+
+
+ @media (mid-width: 600px) {
+  .app-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+  }
+
+  .note-form{
+    display: grid;
+  }
+ }
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust minmax to ensure responsiveness */
+  gap: 20px;
+  padding: 10px;
+  grid-column-start: 2;
+
+  }
+
+ .note-item {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid#ccc; */
+  padding: 10px;
+  border-radius: 5px;
+  /* box-shadow: 0px 0px 10px rgba(24, 24, 24, 0.1); */
+  cursor: pointer;
+  position: relative;
+ }
+
+ .notes-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+ }
+
+ .notes-header button {
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  max-width: fit-content;
+ }
+
+ h2 {
+  margin: 0;
+ }
+
+ 
+ textarea,
+ input,
+ select {
+  border-radius: 5px;
+  border: 1px solid rgb(25, 25, 25);
+  padding: 10px;
+  font-size: 16px;
+ }
+ 
+ .note-form button {
+  border-radius: 5px;
+  background-color: rgb(64, 154, 184);
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+ }
+ 
+ .note-form button:hover {
+  background-color: rgb(106, 175, 198);
+  cursor: pointer;
+ }
+ 
+ .favorite-section {
+  margin-top: 20px;
+  margin-left: 20px;
+ }
+
+ .favorite-section ul {
+  list-style-type: none;
+  padding-left: 0;
+ }
+
+
+ /* :root {
+  --background-color: #eeeeee;
+  --note-background: white;
+  --primary-text-color: black;
+  --button-background: rgb(64, 154, 184);
+  --button-hover: rgb(106, 175, 198);
+  --border: black;
+ }
+
+ [data-theme="dark"]{
+  --background-color: #222222;
+  --note-background: rgb(25, 25, 25);
+  --primary-text-color: lightgray;
+  --button-background: rgb(8, 62, 80);
+  --button-hover: rgb(51, 120, 143);
+  --border: rgb(101, 101, 101);
+ } */
