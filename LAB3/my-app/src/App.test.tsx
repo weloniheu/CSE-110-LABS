@@ -8,6 +8,6 @@ test("renders Create Note", () => {
      <App />
    </BrowserRouter>
  );
- const createNoteElement = screen.getByText(/Create Title/i);
+ const createNoteElement = screen.getByText(/Create Note/i);
  expect(createNoteElement).toBeInTheDocument();
 });

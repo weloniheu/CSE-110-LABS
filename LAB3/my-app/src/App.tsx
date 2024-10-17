@@ -26,22 +26,22 @@ const App = () => {
  );
 };
 
-function ToggleTheme() {
-  const [currentTheme, setCurrentTheme] = useState(themes.light);
+// function ToggleTheme() {
+//   const [currentTheme, setCurrentTheme] = useState(themes.light);
  
-  const toggleTheme = () => {
-    setCurrentTheme(currentTheme === themes.light ? themes.dark : themes.light);
-  };
+//   const toggleTheme = () => {
+//     setCurrentTheme(currentTheme === themes.light ? themes.dark : themes.light);
+//   };
  
-  const theme = useContext(ThemeContext);
+//   const theme = useContext(ThemeContext);
 
-  return (
-    <ThemeContext.Provider value={currentTheme}>
-      <button onClick={toggleTheme}> Toggle Theme </button>
-      <App />
-    </ThemeContext.Provider>
-  );
- }
+//   return (
+//     <ThemeContext.Provider value={currentTheme}>
+//       <button onClick={toggleTheme}> Toggle Theme </button>
+//       <App />
+//     </ThemeContext.Provider>
+//   );
+//  }
 
 // export default ToggleTheme;
 
