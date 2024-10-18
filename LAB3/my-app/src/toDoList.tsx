@@ -32,6 +32,8 @@ export function ToDoList() {
    setNumRemainingItems(numRemainingItems + diff);
  }
 
+ 
+
  return (
    <div className="App">
      <div className="App-body">
@@ -50,11 +52,12 @@ function ListItem(item: GroceryItem, changeHandler: ChangeEventHandler) {
    <div>
      <input
        type="checkbox"
+       id={`checkbox-${item.name}`}
        onChange={changeHandler}
        checked={item.isPurchased}
        name={item.name}
      />
-     {item.name}
+     <label htmlFor={`checkbox-${item.name}`}>{item.name}</label> 
    </div>
  );
 }

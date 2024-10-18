@@ -9,12 +9,13 @@ import { ThemeContext, themes } from "./ThemeContext";
 
 
 const App = () => {
-  const theme = useContext(ThemeContext);
+  // const theme = useContext(ThemeContext);
   return (
-   <div 
+   <div
   //  style={{
-  //   background: theme.background,
-  //   color: theme.lines,
+  //   minHeight: '100vh',
+  //   margin: `0`,
+  //   // color: theme.lines,
   //   }}
     >
      <Navbar />

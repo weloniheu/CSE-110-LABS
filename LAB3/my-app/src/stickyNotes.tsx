@@ -11,7 +11,8 @@ export const StickyNotes = () => {
 
 
     //making the notes area
-    const [notes, setNotes] = useState<Note[]>(dummyNotesList);
+    // const [notes, setNotes] = useState<Note[]>(dummyNotesList);
+    const [notes, setNotes] = useState<Note[]>([]);
 
     // const [notes, setNotes] = useState<Note[]>([]]); // if I want to not have the dummynotes
 
@@ -64,23 +65,23 @@ export const StickyNotes = () => {
 
     // Edit notes
 
-    // const [selectedNote, setSelectedNote] = useState<Note>(initialNote);
-
-    // const editHandler = (id: number, newTitle: string) => {
-    //     setNotes((prevNotes) =>
-    //         prevNotes.map((note) =>
-    //         note.id === id ? { ...note, title: newTitle} : note
-    //         )
-    //     );
-    // }
+    function handleContentInput(e) {
+        const newContent = e.currentTarget.innerText;
+        // Update the note's content in your state
+        setNotes((prevNotes) =>
+          prevNotes.map((note) =>
+            note.id === currentNoteId ? { ...note, content: newContent } : note
+          )
+        );
+      }
 
 //actual application
     return (
         <div className='app-container' 
-        style={{
-            background: theme.background,
-            color: theme.lines,
-        }}
+        // style={{
+        //     background: theme.background,
+        //     color: theme.lines,
+        // }}
         >
         {/* <button onClick={() => console.log('Notes length:', notes.length)}>
         Print Notes Length
