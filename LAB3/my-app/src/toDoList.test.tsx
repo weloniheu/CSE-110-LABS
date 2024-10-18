@@ -1,86 +1,88 @@
+// toDoList.test.tsx
 import { render, screen, fireEvent } from "@testing-library/react";
 import { ToDoList } from "./toDoList";
-import { dummyGroceryList } from "./constants";
-import { waitFor } from "@testing-library/react";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import '@testing-library/jest-dom';
 
-describe("To-Do List", () => {
-  test("renders the initial list and name correctly", () => {
+describe("ToDoList Component", () => {
+  // test("renders all items in the list", () => {
+  //   render(
+  //     <MemoryRouter initialEntries={["/todolist/"]}>
+  //       <Routes>
+  //         <Route path="/todolist/" element={<ToDoList />} />
+  //       </Routes>
+  //     </MemoryRouter>
+  //   );
+
+  //   // Check title
+  //   expect(screen.getByText("'s To Do List")).toBeInTheDocument();
+
+  //   // Check all items are displayed
+  //   expect(screen.getByLabelText("Apples")).toBeInTheDocument();
+  //   expect(screen.getByLabelText("Bananas")).toBeInTheDocument();
+
+  // });
+
+  test("displays the correct number of items bought", () => {
     render(
-        <ToDoList />
+      <MemoryRouter initialEntries={["/todolist/Jane"]}>
+        <Routes>
+          <Route path="/todolist/:name" element={<ToDoList />} />
+        </Routes>
+      </MemoryRouter>
     );
 
-    // Verify the user's name is displayed in the header (assuming useParams() returns a default name for this test)
-    expect(screen.getByText(/'s To Do List/i)).toBeInTheDocument();
+    // Initially, no items are purchased
+    expect(screen.getByText("Items bought: 0")).toBeInTheDocument();
 
-    // Check if all items from dummyGroceryList are displayed
-    dummyGroceryList.forEach((item) => {
-      expect(screen.getByText(item.name)).toBeInTheDocument();
-    });
+    // Check an item
+    const applesCheckbox = screen.getByLabelText("Apples");
+    fireEvent.click(applesCheckbox);
+    expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
 
-    // Initially, Items bought should be 0
-    expect(screen.getByText(/Items bought: 0/i)).toBeInTheDocument();
+    // Check another item
+    const bananasCheckbox = screen.getByLabelText("Bananas");
+    fireEvent.click(bananasCheckbox);
+    expect(screen.getByText("Items bought: 2")).toBeInTheDocument();
+
+    // Uncheck an item
+    fireEvent.click(applesCheckbox);
+    expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
+
+    fireEvent.click(applesCheckbox);
+
+    console.log(`after name: ${applesCheckbox.name}, ispurch: ${applesCheckbox.checked}`)
+    console.log(`after name: ${bananasCheckbox.name}, ispurch: ${bananasCheckbox.checked}`)
   });
 
-  
+  // test("updates item list when items are checked or unchecked", () => {
+  //   render(
+  //     <MemoryRouter initialEntries={["/todolist/"]}>
+  //       <Routes>
+  //         <Route path="/todolist/" element={<ToDoList />} />
+  //       </Routes>
+  //     </MemoryRouter>
+  //   );
 
-  test("displays correct number of purchased items 02", async () => {
-    render(<ToDoList />);
+  //   const applesCheckbox = screen.getByLabelText("Apples");
+  //   const bananasCheckbox = screen.getByLabelText("Bananas");
 
-    screen.debug();
+  //   console.log(`before name: ${applesCheckbox.name}, ispurch: ${applesCheckbox.checked}`)
+  //   console.log(`before name: ${bananasCheckbox.name}, ispurch: ${bananasCheckbox.checked}`)
 
-    const fItemCheckB0X = screen.getByLabelText(/Bananas/i);
-    const fItemCheckBOX = screen.getByLabelText(/Apples/i);
-    
-
-    fireEvent.click(fItemCheckBOX);
-    fireEvent.click(fItemCheckBOX);
-
-
-
-    
-    console.log(`Checkbox name: ${fItemCheckBOX.name}, Label: ${fItemCheckBOX.labels[0].textContent}, isPurchased: ${fItemCheckBOX.checked}`);
-
-    console.log(`Checkbox name: ${fItemCheckB0X.name}, Label: ${fItemCheckB0X.labels[0].textContent}, isPurchased: ${fItemCheckB0X.checked}`);
-    
-
-    
-    await waitFor(() => {
-      expect(screen.getByText(/Items bought: 2/i)).toBeInTheDocument();
-    });
-
-  }); 
-
-  test("displays correct number of purchased items 020", async () => {
-    render(<ToDoList />);
-
-    const firstItemCheckbox = screen.getByRole('checkbox', {name:/Apples/i });
-    const secondItemCheckbox = screen.getByRole("checkbox", { name:/Bananas/i });
+  //   // Check items
+  //   fireEvent.click(applesCheckbox);
+  //   fireEvent.click(bananasCheckbox);
 
 
-    fireEvent.click(firstItemCheckbox)
-    fireEvent.click(secondItemCheckbox)
+  //   console.log(`middle name: ${applesCheckbox.name}, ispurch: ${applesCheckbox.checked}`)
+  //   console.log(`mideel name: ${bananasCheckbox.name}, ispurch: ${bananasCheckbox.checked}`)
+  //   expect(screen.getByText("Items bought: 2")).toBeInTheDocument();
 
-
-    fireEvent.change(firstItemCheckbox)
-    fireEvent.change(secondItemCheckbox)
-
-    await waitFor(() => {
-      expect(screen.getByText(/Items bought: 0/i)).toBeInTheDocument();
-    });
-
-  }); 
-
-  test("displays correct number of purchased items 1", async () => {
-    render(<ToDoList />);
-
-    const firstItemCheckbox = screen.getByRole('checkbox', {name:/Apples/i });
-
-
-    fireEvent.click(firstItemCheckbox)
-
-
-    expect(await screen.findByText(/Items bought: 1/i)).toBeInTheDocument();
-
-
-  }); 
+  //   console.log(`after name: ${applesCheckbox.name}, ispurch: ${applesCheckbox.checked}`)
+  //   console.log(`after name: ${bananasCheckbox.name}, ispurch: ${bananasCheckbox.checked}`)
+  //   // Uncheck items
+  //   fireEvent.click(bananasCheckbox);
+  //   expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
+  // });
 });

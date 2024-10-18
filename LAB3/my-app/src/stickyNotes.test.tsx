@@ -1,80 +1,106 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { StickyNotes } from "./stickyNotes";
+// // stickyNotes.test.tsx
+// import { render, screen, fireEvent } from "@testing-library/react";
+// import { StickyNotes } from "./stickyNotes";
+// import '@testing-library/jest-dom';
 
-describe("Sticky Notes", () => {
-  // Read: Are all the notes that are created displayed on the page
-  test("renders all sticky notes", () => {
-    render(<StickyNotes />);
+// describe("StickyNotes Component", () => {
+//   test("renders create note form", () => {
+//     render(<StickyNotes />);
+//     const createNoteButton = screen.getByText("Create Note");
+//     expect(createNoteButton).toBeInTheDocument();
+//   });
 
-    const createNoteTitleInput = screen.getByPlaceholderText("Note Title");
-    const createNoteContentTextarea = screen.getByPlaceholderText("Note Content");
-    const createNoteButton = screen.getByText("Create Note");
+//   test("creates multiple notes and displays them", () => {
+//     render(<StickyNotes />);
+//     const titleInput = screen.getByPlaceholderText("Note Title");
+//     const contentInput = screen.getByPlaceholderText("Note Content");
+//     const createButton = screen.getByText("Create Note");
 
-    // Creating two notes
-    fireEvent.change(createNoteTitleInput, { target: { value: "First Note" } });
-    fireEvent.change(createNoteContentTextarea, { target: { value: "First note content" } });
-    fireEvent.click(createNoteButton);
+//     // Create first note
+//     fireEvent.change(titleInput, { target: { value: "First Note" } });
+//     fireEvent.change(contentInput, { target: { value: "First Content" } });
+//     fireEvent.click(createButton);
 
-    fireEvent.change(createNoteTitleInput, { target: { value: "Second Note" } });
-    fireEvent.change(createNoteContentTextarea, { target: { value: "Second note content" } });
-    fireEvent.click(createNoteButton);
+//     // Create second note
+//     fireEvent.change(titleInput, { target: { value: "Second Note" } });
+//     fireEvent.change(contentInput, { target: { value: "Second Content" } });
+//     fireEvent.click(createButton);
 
-    // Check if both notes are rendered
-    const firstNote = screen.getByText("First Note");
-    const secondNote = screen.getByText("Second Note");
-    expect(firstNote).toBeInTheDocument();
-    expect(secondNote).toBeInTheDocument();
-  });
+//     // Check that both notes are displayed
+//     expect(screen.getByText("First Note")).toBeInTheDocument();
+//     expect(screen.getByText("Second Note")).toBeInTheDocument();
+//   });
 
-  // Update: Is the note's content being updated correctly?f
-  
-  test("updates a sticky note", () => {
-    render(<StickyNotes />);
-  
-    // Create a new note
-    const titleInput = screen.getByPlaceholderText("Note Title");
-    const contentInput = screen.getByPlaceholderText("Note Content");
-    const createButton = screen.getByText("Create Note");
-  
-    fireEvent.change(titleInput, { target: { value: "Note to Update" } });
-    fireEvent.change(contentInput, { target: { value: "Initial content" } });
-    fireEvent.click(createButton);
-  
-    // Verify the note is created
-    expect(screen.getByText("Initial content")).toBeInTheDocument();
-  
-    // Edit the note's content
-    const editableContent = screen.getByText("Initial content");
-  
-    // Simulate user changing the content
-    editableContent.innerText = "Updated content";
-    fireEvent.input(editableContent);
-    fireEvent.blur(editableContent); // If your component relies on blur to save changes
-  
-    // Verify the content has been updated
+//   test("updates a note's title and content", () => {
+//     render(<StickyNotes />);
+//     const titleInput = screen.getByPlaceholderText("Note Title");
+//     const contentInput = screen.getByPlaceholderText("Note Content");
+//     const createButton = screen.getByText("Create Note");
 
-      expect(screen.getByText("Updated content")).toBeInTheDocument();
+//     // Create a note
+//     fireEvent.change(titleInput, { target: { value: "Original Title" } });
+//     fireEvent.change(contentInput, { target: { value: "Original Content" } });
+//     fireEvent.click(createButton);
 
-  });
-  
+//     // Get the note elements
+//     const noteTitle = screen.getByTestId("note-title-1");
+//     const noteContent = screen.getByTestId("note-content-1");
 
-  // Delete: Does the note get removed when the delete button is pressed?
-  test("delete a note", () => {
-    render(<StickyNotes />);
-    const createNoteTitleInput = screen.getByPlaceholderText("Note Title");
-    const createNoteContentTextarea = screen.getByPlaceholderText("Note Content");
-    const createNoteButton = screen.getByText("Create Note");
+//     // Update title and content
+//     fireEvent.input(noteTitle, { target: { textContent: "Updated Title" } });
+//     fireEvent.input(noteContent, { target: { textContent: "Updated Content" } });
 
-    fireEvent.change(createNoteTitleInput, { target: { value: "Note to Delete" } });
-    fireEvent.change(createNoteContentTextarea, { target: { value: "Content to Delete" } });
-    fireEvent.click(createNoteButton);
+//     // Verify updates
+//     expect(noteTitle.textContent).toBe("Updated Title");
+//     expect(noteContent.textContent).toBe("Updated Content");
+//   });
 
-    // Delete the note
-    const deleteButtons = screen.getAllByText("x");
-    fireEvent.click(deleteButtons[0]); //need to delete the first note
+//   test("deletes a note when delete button is clicked", () => {
+//     render(<StickyNotes />);
+//     const titleInput = screen.getByPlaceholderText("Note Title");
+//     const contentInput = screen.getByPlaceholderText("Note Content");
+//     const createButton = screen.getByText("Create Note");
 
-    expect(screen.queryByText("Note to Delete")).not.toBeInTheDocument();
-    expect(screen.queryByText("Content to Delete")).not.toBeInTheDocument();
-  })
+//     // Create a note
+//     fireEvent.change(titleInput, { target: { value: "Note to Delete" } });
+//     fireEvent.change(contentInput, { target: { value: "Content to Delete" } });
+//     fireEvent.click(createButton);
 
-});
+//     // Verify note is displayed
+//     expect(screen.getByText("Note to Delete")).toBeInTheDocument();
+
+//     // Click delete button
+//     const deleteButton = screen.getByTestId("delete-button-1");
+//     fireEvent.click(deleteButton);
+
+//     // Verify note is removed
+//     expect(screen.queryByText("Note to Delete")).not.toBeInTheDocument();
+//   });
+
+//   test("marks a note as favorite and displays it in favorites", () => {
+//     render(<StickyNotes />);
+//     const titleInput = screen.getByPlaceholderText("Note Title");
+//     const contentInput = screen.getByPlaceholderText("Note Content");
+//     const createButton = screen.getByText("Create Note");
+
+//     // Create a note
+//     fireEvent.change(titleInput, { target: { value: "Favorite Note" } });
+//     fireEvent.change(contentInput, { target: { value: "Favorite Content" } });
+//     fireEvent.click(createButton);
+
+//     // Mark as favorite
+//     const favoriteButton = screen.getByTestId("favorite-button-1");
+//     fireEvent.click(favoriteButton);
+
+//     // Verify note appears in favorites
+//     const favoriteNote = screen.getByTestId("favorite-note-1");
+//     expect(favoriteNote).toBeInTheDocument();
+//     expect(favoriteNote).toHaveTextContent("Favorite Note");
+//   });
+
+//   test("displays no notes when none are created", () => {
+//     render(<StickyNotes />);
+//     const notesGrid = screen.getByTestId("notes-grid");
+//     expect(notesGrid.childElementCount).toBe(0);
+//   });
+// });

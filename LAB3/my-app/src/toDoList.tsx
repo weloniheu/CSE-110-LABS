@@ -1,3 +1,4 @@
+// toDoList.tsx
 import React, { ChangeEventHandler } from "react";
 import "./App.css";
 import { useState } from "react";
@@ -6,58 +7,47 @@ import { dummyGroceryList } from "./constants";
 import { useParams } from "react-router-dom";
 
 export function ToDoList() {
- const [numRemainingItems, setNumRemainingItems] = useState(0);
+  let [items, setItems] = useState(dummyGroceryList);
+  const { name } = useParams();
 
- let [items, setItems] = useState(dummyGroceryList);
+  const numRemainingItems = items.filter(item => item.isPurchased).length;
 
- const { name } = useParams();
+  function handleCheckboxClick(e: React.ChangeEvent<HTMLInputElement>) {
+    const checkbox: HTMLInputElement = e.target as HTMLInputElement;
+    const itemName = checkbox.name;
+    const itemIndex = items.findIndex((item) => item.name === itemName);
+    items[itemIndex] = { name: itemName, isPurchased: checkbox.checked };
 
- function handleCheckboxClick(e: React.ChangeEvent<HTMLInputElement>) {
-   const checkbox: HTMLInputElement = e.target as HTMLInputElement;
+    const uncheckedItems = items.filter((item) => !item.isPurchased);
+    const checkedItems = items.filter((item) => item.isPurchased);
+    const newItems = uncheckedItems.concat(checkedItems);
+    setItems([...newItems]);
+  }
 
-   const itemName = checkbox.name;
-
-   const itemIndex = items.findIndex((item) => item.name === itemName);
-   items[itemIndex] = { name: itemName, isPurchased: checkbox.checked };
-
-   const uncheckedItems = items.filter((item) => !item.isPurchased);
-   const checkedItems = items.filter((item) => item.isPurchased);
-
-   const newItems = uncheckedItems.concat(checkedItems);
-
-   setItems(newItems);
-
-   const diff = checkbox.checked ? 1 : -1;
-
-   setNumRemainingItems(numRemainingItems + diff);
- }
-
- 
-
- return (
-   <div className="App">
-     <div className="App-body">
-     <h1>{name}'s To Do List</h1>
-       Items bought: {numRemainingItems}
-       <form action=".">
-         {items.map((item) => ListItem(item, handleCheckboxClick))}
-       </form>
-     </div>
-   </div>
- );
+  return (
+    <div className="App">
+      <div className="App-body">
+        <h1>{name}'s To Do List</h1>
+        Items bought: {numRemainingItems}
+        <form action=".">
+          {items.map((item) => ListItem(item, handleCheckboxClick))}
+        </form>
+      </div>
+    </div>
+  );
 }
 
 function ListItem(item: GroceryItem, changeHandler: ChangeEventHandler) {
- return (
-   <div>
-     <input
-       type="checkbox"
-       id={`checkbox-${item.name}`}
-       onChange={changeHandler}
-       checked={item.isPurchased}
-       name={item.name}
-     />
-     <label htmlFor={`checkbox-${item.name}`}>{item.name}</label> 
-   </div>
- );
+  return (
+    <div>
+      <input
+        type="checkbox"
+        id={`checkbox-${item.name}`}
+        onChange={changeHandler}
+        checked={item.isPurchased}
+        name={item.name}
+      />
+      <label htmlFor={`checkbox-${item.name}`}>{item.name}</label>
+    </div>
+  );
 }
