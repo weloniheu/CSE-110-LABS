@@ -52,9 +52,9 @@ describe("Sticky Notes", () => {
     fireEvent.blur(editableContent); // If your component relies on blur to save changes
   
     // Verify the content has been updated
-    waitFor(() => {
+
       expect(screen.getByText("Updated content")).toBeInTheDocument();
-    });
+
   });
   
 

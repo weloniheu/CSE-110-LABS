@@ -1,20 +1,14 @@
-// import './App.css';
 import { Label, Note } from "./types"; // import the lable type from the appropriate module
 import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext, themes } from "./ThemeContext";
 import { dummyNotesList } from "./constants";
-// import ClickCount from "./hooksExercise";
 
 
 export const StickyNotes = () => {
-    // your code from App.tsx
-
 
     //making the notes area
     // const [notes, setNotes] = useState<Note[]>(dummyNotesList);
     const [notes, setNotes] = useState<Note[]>([]);
-
-    // const [notes, setNotes] = useState<Note[]>([]]); // if I want to not have the dummynotes
 
     const initialNote = {
     id: -1,
@@ -65,15 +59,6 @@ export const StickyNotes = () => {
 
     // Edit notes
 
-    function handleContentInput(e) {
-        const newContent = e.currentTarget.innerText;
-        // Update the note's content in your state
-        setNotes((prevNotes) =>
-          prevNotes.map((note) =>
-            note.id === currentNoteId ? { ...note, content: newContent } : note
-          )
-        );
-      }
 
 //actual application
     return (
@@ -167,7 +152,8 @@ export const StickyNotes = () => {
                     color: theme.lines
                     }}>x</button>
                 </div>
-                <h2 contentEditable="true">
+                {/* please edit below this part if possible */}
+                <h2 contentEditable="true"> 
                     {note.title}
                     </h2>
                     <p contentEditable="true">
@@ -175,9 +161,10 @@ export const StickyNotes = () => {
                     </p>
                     <p contentEditable="true">
                     {note.label}
-                    </p>
-                </div>
+                    </p>                     
+                </div> 
             ))}
+            {/* please edit above this part if possible */}
             </div>
             {/* favorite sections below note form and notes */}
             <div className="favorite-section">

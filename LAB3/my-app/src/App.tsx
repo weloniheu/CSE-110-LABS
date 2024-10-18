@@ -9,14 +9,9 @@ import { ThemeContext, themes } from "./ThemeContext";
 
 
 const App = () => {
-  // const theme = useContext(ThemeContext);
+
   return (
    <div
-  //  style={{
-  //   minHeight: '100vh',
-  //   margin: `0`,
-  //   // color: theme.lines,
-  //   }}
     >
      <Navbar />
      <Routes>
@@ -26,24 +21,5 @@ const App = () => {
    </div>
  );
 };
-
-// function ToggleTheme() {
-//   const [currentTheme, setCurrentTheme] = useState(themes.light);
- 
-//   const toggleTheme = () => {
-//     setCurrentTheme(currentTheme === themes.light ? themes.dark : themes.light);
-//   };
- 
-//   const theme = useContext(ThemeContext);
-
-//   return (
-//     <ThemeContext.Provider value={currentTheme}>
-//       <button onClick={toggleTheme}> Toggle Theme </button>
-//       <App />
-//     </ThemeContext.Provider>
-//   );
-//  }
-
-// export default ToggleTheme;
 
 export default App;
