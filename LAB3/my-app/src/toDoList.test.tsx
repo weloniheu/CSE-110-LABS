@@ -93,7 +93,7 @@ describe("ToDoList Component", () => {
   //   expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
   // });
 
-  test("items checked from the top should move bellow unchecked and count should change", () => {
+  test("items checked from the top should move below unchecked and count should change", () => {
     render(
       <MemoryRouter initialEntries={["/todolist/"]}>
         <Routes>
@@ -180,7 +180,7 @@ describe("ToDoList Component", () => {
     render(
       <MemoryRouter initialEntries={["/todolist/new"]}>
         <Routes>
-          <Route path="/todolist/:new?" element={<ToDoList />} />
+          <Route path="/todolist/:name?" element={<ToDoList />} />
         </Routes>
       </MemoryRouter>
     );
@@ -200,7 +200,7 @@ describe("ToDoList Component", () => {
 
     // grabs inital list and checked both unchecked
     let items = getItemLabels();
-    console.log(items[1])
+    console.log(items[0])
     expect(items[0].labelText).toBe("Apples");
     expect(items[1].labelText).toBe("Bananas");
     expect(items[1].checkbox.checked).toBe(false);
