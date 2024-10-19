@@ -14,4 +14,7 @@ export type Note = {
     isFavorite: boolean;
 }
 
-export type GroceryItem = { name: string; isPurchased: boolean };
+export interface GroceryItem {
+    name: string;
+    isPurchased: boolean;
+  }
