@@ -29,6 +29,8 @@ describe("StickyNotes Component", () => {
     // Check that both notes are displayed
     expect(screen.getByText("First Note")).toBeInTheDocument();
     expect(screen.getByText("Second Note")).toBeInTheDocument();
+    expect(screen.getByText("First Content")).toBeInTheDocument();
+    expect(screen.getByText("Second Content")).toBeInTheDocument();
   });
 
   test("updates a note's title and content", () => {
