@@ -1,0 +1,109 @@
+the App test render for 
+  test - "renders Create Note",
+    renders the app and checks if the create note is on the current page to make sure it's "home"
+
+
+describe - "ToDoList Component" 
+  test - "renders all items in the list"
+    render with memoryRouter, with Routes and path
+
+    check the text 's to do list is there for the title
+
+    checks the items apples, and bananas are in the document
+
+
+  test - "items checked from the top should move below unchecked and count should change"
+    render similar to the previous one
+
+    create const getItemLabels to create a list of the different items and store their info
+
+    grab the intial list, and check they are the right names
+    click checkbox for the list[0] which should be apples
+    grab the new ordered list and make sure that bananas is now at the top of the list while apples is at the bottom
+    similar check that bananas is still false and apples in true
+    then check the items bought to make sure it's 1 to match the checkboxs
+
+    uncheck apples which is item[1] and then grab the new list
+    check to make sure none of the items moved and check the items bought is infact 0
+
+    click both boxes and then check that its in order bananas apples like previous but with clicked checkboxes
+    since both should be clicked check if bought count is 2
+
+
+  test - "if both items check, and bottom is unchecked it should move to top"
+    render similar to previous and then make getItemLabels similar to previous
+
+    grab the intial list make sure everything has the corrent name and is false
+
+    click apple check box to see if it moves to the bottom by grabbing the new list ans checking order
+    check bananas is on the top then click banana since both are clicked order should stay the same 
+    check list and if they are both true similarly items bought should be 2
+
+    check position again, then uncheck apples to see if it returns to the top of the list and then check positions of the new list
+
+    finally check the items bought list
+    expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
+
+
+describe"StickyNotes Component"
+
+  test - "renders create note form"
+    renders(<StickyNotes />);
+    get the button with getByTest "Create Note"
+    make sure the button is in the toBeInTheDocument
+
+
+  test - "creates multiple notes and displays them"
+    render(<StickyNotes />);
+    finds input for title, content, and then the button to create
+    changes the title to first note, and content to first content
+    then clicks the createbutton with fire event
+
+    changes the title to second note, and content to second content
+    then clicks the createbutton with fire event to make a second note
+
+    checkes with expects/getbyText for, First Note, Second Note, First Content and Second Content to see if in the document
+
+
+  test - "updates a note's title and content"
+    render(<StickyNotes />);
+
+    finds input for title, content, and then the button to create
+    creates a note named Original Title/Content with fireEvent change and click
+
+    grab the note elements with the id of the note
+
+    fire event to change those elements to Updated Title/Content
+
+    make sure the new title and content has actually changed with expect
+
+
+  test - "deletes a note when delete button is clicked"
+    render(<StickyNotes />);
+    finds input for title, content, and then the button to create
+    creates a note named Note to Delete and Content to Delete with fireEvent change and click
+
+    check if note was made with expect
+
+    find the delete button with the id delete-button-1
+    then first even click said button 
+
+    check if note is no longer there with expect.not
+
+    // Verify note is removed
+    expect(screen.queryByText("Note to Delete")).not.toBeInTheDocument();
+
+
+  test - "marks a note as favorite and displays it in favorites" 
+    render(<StickyNotes />);
+
+    finds input for title, content, and then the button to create
+    creates a note named Favorite Note and Content to Favorite Content with fireEvent change and click
+
+    find the heart(favorite button) with the id favorite-button-1 and click
+
+    make sure the favorite note id is in the document along and has the content Favorite Note
+
+  test - "displays no notes when none are created"
+    render(<StickyNotes />);
+    find the grid and then checks the side with expect childElementCount
