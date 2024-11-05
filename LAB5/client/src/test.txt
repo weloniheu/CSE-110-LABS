@@ -1,0 +1,31 @@
+describe 'AddExpenseForm Component'
+  test - 'adds a new expense and updates the context'
+
+    grabs the place holders for the expense name and expense item as well as finds the save button to create to expense
+
+    creates new expense using fireevent.change with the place holders and fireevent.click
+
+    checks if the jest.fn() setExpense was called once and if it was with the specified name and const
+
+describe 'ExpenseItem Component'
+  test - 'deletes an expense and updates the context'
+
+    set the item of the list to be an item of 500 dollars and with a total budget of 1000
+
+    check that the remaining is 500, the spent is 500 and that there is 1 'listitem'
+
+    remove said list item with fireevent click x
+
+    check the new remaining is 1000, the spent is 0 and that the there are not listitems
+
+
+describe 'Budget Balance Verification'
+  test - 'calculates remaining balance correctly'
+
+    make the instial list with apples and bananas, id and cost 1, 20 and 2, 10 respectively
+
+    assert that the remaining balance is displayed correctly with the forminal budget - totalExpenses
+
+    check that the amount spent thus far is equal to the total expenses
+
+    finally check that the remainder and spent amounts add up to the budget
